@@ -4,7 +4,7 @@ import { LambdaCiCdStack } from "../lib/lambda-pipeline-stack";
 import { StackMetadataConfig } from "../types/lambda-cicd-types";
 
 const config: StackMetadataConfig =
-  require("../config/config.json") as StackMetadataConfig;
+  require("../../infrastructure-config.json") as StackMetadataConfig;
 
 const app = new cdk.App();
 

@@ -27,7 +27,6 @@ export const getSynthStepCommands = (
         installCommands: [
           "npm install -g aws-cdk",
           "npm install ci",
-          "pip install -r requirements.txt",
           ...(props?.installCommands ? props?.installCommands : []),
         ],
       };
