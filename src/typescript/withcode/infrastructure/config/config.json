@@ -1,0 +1,10 @@
+{
+    "projectName": "MyProject",
+    "repositoryName": "TestProjectRepository",
+    "branchName": "master",
+    "lambdaName": "TestProject",
+    "lambdaRuntime": "python3.13",
+    "lambdaHandlerName": "handler.handler",
+    "lambdaAssetPath": "./src",
+    "accountId": "502661615878"
+}
