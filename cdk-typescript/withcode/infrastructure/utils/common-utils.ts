@@ -39,7 +39,7 @@ export const getSynthStepCommands = (
 };
 
 export const getLambdaExecutionRolePolicies = (permissions?: Set<SpecialPermissions>):LambdaPolicyResponse => {
-  const managedPolicies: IManagedPolicy[] = [ManagedPolicy.fromAwsManagedPolicyName("AWSLambdaBasicExecutionRole")];
+  const managedPolicies: IManagedPolicy[] = [ManagedPolicy.fromAwsManagedPolicyName("service-role/AWSLambdaBasicExecutionRole")];
   const policyStatements:PolicyStatement[] = [];
   permissions?.forEach((permission) => {
     switch (permission) {
