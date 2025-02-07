@@ -25,6 +25,7 @@ export class LambdaStack extends Stack {
     props: LambdaApplicationStageProps
   ) {
     super(scope, id, props);
+    const lambdaFunctionName = `${props.config.projectName}-${stageName}`;
     const runtimeInfo = getRuntimeFromInfoFromName(props.config.lambdaRuntime);
     const policyResponse = getLambdaExecutionRolePolicies(
       props.config.specialPermissions
@@ -32,13 +33,14 @@ export class LambdaStack extends Stack {
     const lambdaExecutionRole = new Role(this, "LambdaExecutionRole", {
       assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
       path: "/",
-      roleName: `${props.config.projectName}LambdaExecutionRole`,
+      roleName: `${lambdaFunctionName}LambdaExecutionRole`,
       managedPolicies: policyResponse.managedPolicies,
     });
     policyResponse.policyStatements.forEach((policyStatement) =>
       lambdaExecutionRole.addToPolicy(policyStatement)
     );
     const lambda = new Function(this, "LambdaFunction", {
+      functionName: lambdaFunctionName,
       runtime: runtimeInfo.runtime,
       handler: props.config.lambdaHandlerName,
       code: Code.fromAsset(props.config.lambdaAssetPath),

@@ -53,7 +53,6 @@ export type StackMetadataConfig = {
   projectName: string;
   repositoryName: string;
   branchName: string;
-  lambdaName: string;
   lambdaRuntime: LambdaRuntimeIdentifier;
   lambdaHandlerName: string;
   lambdaAssetPath: string;
