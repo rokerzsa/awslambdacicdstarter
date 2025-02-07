@@ -1,5 +1,6 @@
 import { StackProps } from "aws-cdk-lib";
 import { IBuildImage, LinuxLambdaBuildImage } from "aws-cdk-lib/aws-codebuild";
+import { IManagedPolicy, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Runtime } from "aws-cdk-lib/aws-lambda";
 
 export type SynthStepCommands = {
@@ -41,6 +42,13 @@ export type LambdaRuntime = {
   buildImage: IBuildImage;
 };
 
+export type SpecialPermissions = "ADMIN" | "LAMBDA_FULL" | "LAMBDA_DYNAMODB_STREAMS" | "LAMBDA_DYNAMODB_EXECUTION" | "DYNAMODB_FULL"  | "SQS_EXECUTION" | "SQS_FULL" | "CLOUDWATCH_FULL"
+
+export type LambdaPolicyResponse = {
+  managedPolicies: IManagedPolicy[]
+  policyStatements: PolicyStatement[]
+}
+
 export type StackMetadataConfig = {
   projectName: string;
   repositoryName: string;
@@ -57,6 +65,7 @@ export type StackMetadataConfig = {
   lambdaAlias?: string;
   lambdaAliasDescription?: string;
   accountId:string;
+  specialPermissions?: Set<SpecialPermissions>;
 };
 
 export type LambdaCiCdStackProps = {
